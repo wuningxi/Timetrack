@@ -51,7 +51,7 @@ At the end of the week, schedule a short weekly review task for Friday afternoon
 By following this technique, your calendar will accumulate a large amount of valuable information over time. **Initially, you can simply look at your weekly calendar view to observe your working patterns, but as time progresses it becomes difficult to identify trends. That's why I wrote Timetrack.** Timetrack is a simple tool for analysing your calendar data. Its commandline interface allows you to adjust several settings, including which time periods and calendars to analyse (e.g. only major, minor and meetings). In the basic setting, the program reads your calendar data and summarises how much time you spent on which kind of task over a certain period of time to help you track your own progress. 
 
 ```
-timetrack_multi_cal -calendars Major.ics,Minor.ics,Meeting.ics -start 2019-11-04 -end 2019-11-16 --all_days
+timetrack_multi_cal -calendars Major.ics,Minor.ics,Meeting.ics -start 2019-11-04 -end 2019-11-18 --all_days
 ```
 
  ![Timetrack summary for two week period](data/screenshots/two-week_summary.png?raw=true "Timetrack summary for two week period")
@@ -59,7 +59,7 @@ timetrack_multi_cal -calendars Major.ics,Minor.ics,Meeting.ics -start 2019-11-04
 However, without taking productivity into account, the summary is only quantitative and may encourage you to maximise working hours rather than productivity. Therefore, **you can use Timetrack's `--prod_score` flag to visualise your average daily productivity alongside quantitative information, allowing you to focus on increasing your productivity rather than working time.**
 
 ```
-timetrack_multi_cal -calendars Major.ics,Minor.ics,Meeting.ics -start 2019-11-04 -end 2019-11-16 --prod_score --all_days
+timetrack_multi_cal -calendars Major.ics,Minor.ics,Meeting.ics -start 2019-11-04 -end 2019-11-18 --prod_score --all_days
 ```
 
  ![Timetrack summary for two week period with productivity scores](data/screenshots/two-week_summary_prod.png?raw=true "Timetrack summary for two week period with productivity scores")
