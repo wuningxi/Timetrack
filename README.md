@@ -1,8 +1,8 @@
 # Timetrack
 
 - Timetrack is a simple commandline program for analysing your own Mac calendar data. 
-- The idea for this project was inspired by Devi Parikh's calendar-based time management technique (https://blog.usejournal.com/calendar-in-stead-of-to-do-lists-9ada86a512dd). 
-- After experimenting with Devi's method for a while, I made some productivity-focused adaptations and developed Timetrack as a tool to support my approach.
+- The idea for this project was inspired by Devi Parikh's calendar-based time management technique (I highly recommend reading her blog post: https://blog.usejournal.com/calendar-in-stead-of-to-do-lists-9ada86a512dd). 
+- After experimenting with Devi's method for a while, I made some adaptations and developed Timetrack as part of my time management and productivity workflow.
 - If you are only interested in how to install and use Timetrack, feel free to skip to [Setup](##setup).
 
 ![Analysing calendar data with Timetrack](data/screenshots/overview.jpg?raw=true "Analysing calendar data with Timetrack")
