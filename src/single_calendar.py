@@ -4,9 +4,9 @@ import warnings
 
 parser = argparse.ArgumentParser()
 parser.register("type", "bool", lambda v: v.lower() == "true")
-parser.add_argument("--today", type="bool", nargs="?", const=True, default=False, help="Only display today's data")
-parser.add_argument("--this_week", type="bool", nargs="?", const=True, default=False, help="Only display this week's data")
-parser.add_argument("--this_month", type="bool", nargs="?", const=True, default=False, help="Only display this month's data")
+parser.add_argument("--today", action="store_true", help="Only display today's data")
+parser.add_argument("--this_week", action="store_true", help="Only display this week's data")
+parser.add_argument("--this_month", action="store_true", help="Only display this month's data")
 parser.add_argument('-start', action="store", dest="start", type=str, default=None, help='Start date as yyy-mm-dd')
 parser.add_argument('-end', action="store", dest="end", type=str, default=None, help='End date as yyy-mm-dd')
 # parser.add_argument('-project_folder', action="store", dest="project_folder", type=str, default='')
@@ -64,6 +64,23 @@ if __name__ == '__main__':
 
     parser.add_argument('-calendar', action="store", dest="calendar_name", type=str, default="Meeting.ics", help='calendar name, e.g. Major.ics, Minor.ics or Meeting.ics')
     FLAGS, unparsed = parser.parse_known_args()
+
+    # double check FLAG settings
+    if FLAGS.this_month:
+        assert FLAGS.today is False
+        assert FLAGS.this_week is False
+        assert FLAGS.start is None
+        assert FLAGS.end is None
+    if FLAGS.this_week:
+        assert FLAGS.today is False
+        assert FLAGS.this_month is False
+        assert FLAGS.start is None
+        assert FLAGS.end is None
+    elif FLAGS.today:
+        assert FLAGS.this_week is False
+        assert FLAGS.this_month is False
+        assert FLAGS.start is None
+        assert FLAGS.end is None
 
     cal_path = 'data/calendars/{}'.format(FLAGS.calendar_name)
     major_cal = Calendar(cal_path,FLAGS.start,FLAGS.end,FLAGS.today,FLAGS.this_week,FLAGS.this_month)
