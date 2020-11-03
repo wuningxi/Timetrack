@@ -26,7 +26,8 @@ def get_max_bar_height(bar_plot, existing_bar_heights):
         heights.append(rect.get_height() + existing_bar_height)
     return max(heights)
 
-def plot_multi_cal_time(names, time_delta_dicts, productivity_dict, granularity = 'hours', label_time=True, label_day=True, plot_productivity=True, plot_all_days=True,print_details=True):
+def plot_multi_cal_time(names, time_delta_dicts, productivity_dict, granularity = 'hours', label_time=True, label_day=True,
+                        plot_productivity=True, plot_all_days=True,print_details=True,add_gridlines=True):
     # y-axis in bold
     rc('font', weight='bold')
 
@@ -92,29 +93,34 @@ def plot_multi_cal_time(names, time_delta_dicts, productivity_dict, granularity 
 
     # The position of the bars on the x-axis
     r = [i for i in range(len(all_unique_keys))]
-
-    # todo: add values to stacked bars, e.g. https://stackoverflow.com/questions/44309507/stacked-bar-plot-using-matplotlib
-
-    # Names of group and bar width = dates
-    # timepoints = ['today']#['A', 'B', 'C', 'D', 'E']
     barWidth = 1
 
     axes1 = plt.subplot(111)
 
-    # found with Digital Color Meter on Mac
-    # colours = ['#7f6d5f','#557f2d','#2d7f5e','#2d7f5e']
-    colours_pref_dark = {'Major.ics':'#246BC3',  #'#2B89FB', # blue
+    # Set your preferred colours for each calendar here:
+
+    # used for edges and text
+    colours_pref_dark = {
+                    'MajorTest.ics': '#246BC3',  # '#2B89FB', # blue
+                    'MinorTest.ics': '#BD8D25',  # FCCF42', # yellow/orange
+                    'Major.ics':'#246BC3',  #'#2B89FB', # blue
                     'Minor.ics':'#BD8D25',  #FCCF42', # yellow/orange
                     'Meeting.ics':'#7F4083',  #CE83E1', # pink
                     'Life.ics':'#0F881D',  #75DA56', # green
                     'Health.ics': '#0F881D',  # 75DA56', # green
                     'Travel.ics':'#545454'} #878787'} # grey
-    colours_pref_light = {'Major.ics':'#CEDFFD', # blue
+
+    # used to fill bar
+    colours_pref_light = {
+                    'MajorTest.ics': '#CEDFFD',  # blue
+                    'MinorTest.ics': '#FFF4CD',  # yellow/orange
+                    'Major.ics':'#CEDFFD', # blue
                     'Minor.ics':'#FFF4CD', # yellow/orange
                     'Meeting.ics':'#F4E3F8', # pink
                     'Life.ics':'#E0F6D8', # green
                     'Health.ics':'#E0F6D8', # green
                     'Travel.ics':'#E0E0E0'} # grey
+
 
     for i in range(len(calendars)):
         # initial start height of bars = 0
@@ -139,7 +145,10 @@ def plot_multi_cal_time(names, time_delta_dicts, productivity_dict, granularity 
                     values.append(time)
                 else:
                     values.append('')
-            autolabel(axes1, bar_plot, bars, values,color=colours_pref_dark[names[i]])
+            if names[i] in colours_pref_light.keys():
+                autolabel(axes1, bar_plot, bars, values,color=colours_pref_dark[names[i]])
+            else:
+                autolabel(axes1, bar_plot, bars, values)
 
     # if label bars
     if label_day:
@@ -151,6 +160,7 @@ def plot_multi_cal_time(names, time_delta_dicts, productivity_dict, granularity 
     else:
         plt.xticks(r, timepoints, fontweight='bold')
 
+    # set axis labels
     plt.xlabel('Day')
     plt.ylabel("Time in {}".format(granularity))
     max_y = get_max_bar_height(bar_plot, bars)+0.5
@@ -158,8 +168,9 @@ def plot_multi_cal_time(names, time_delta_dicts, productivity_dict, granularity 
               fancybox=True, shadow=True, ncol=len(names))
     axes1.set_ylim(0,max_y)
 
-    for threshold in [8]: # dashed line in plot
-        axes1.plot([-0.5, len(all_unique_keys)-0.5], [threshold, threshold],"k--",linewidth=1,color='grey')
+    if add_gridlines:
+        for threshold in [8]: # add grey dashed line at 8 hour mark
+            axes1.plot([-0.5, len(all_unique_keys)-0.5], [threshold, threshold],"k--",linewidth=1,color='grey')
 
 
     # plot avg productivity scores
@@ -172,15 +183,15 @@ def plot_multi_cal_time(names, time_delta_dicts, productivity_dict, granularity 
         axes2 = plt.twinx()
         axes2.set_ylim(0, max_y)
         axes2.plot(x, y, color='#C72F60', label='Sine')
-        for threshold in [3,4,5]:  # dashed line in plot
-            axes1.plot([-0.5, len(all_unique_keys) - 0.5], [threshold, threshold], "k--", linewidth=1, color='darksalmon')
-        # axes2.plot([-0.5, len(all_unique_keys) - 0.5], [3, 3], "k--", linewidth=1, color='grey')
         axes2.tick_params(axis='y', colors='#C72F60')
-        # print(pyplot.yticks())
         pyplot.yticks(np.arange(6), ('',1,2,3,4,5))
         axes2.set_ylabel('Productivity',color='#C72F60')
 
-    # Show graphic
+        if add_gridlines:
+            for threshold in [3,4,5]:  # add red dashed lines at 3, 4 and 5 productivity mark
+                axes1.plot([-0.5, len(all_unique_keys) - 0.5], [threshold, threshold], "k--", linewidth=1, color='darksalmon')
+
+    # Show plot
     try:
         plt.show()
     except KeyboardInterrupt:
