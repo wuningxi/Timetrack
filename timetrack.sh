@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export TIMETRACKDIR=/path/to/timetrack # e.g. Users/nicole/code/timetrack
+export TIMETRACKDIR=/path/to/timetrack # e.g. /Users/nicole/code/Timetrack
 
 function timetrack_multi_cal() {
         # switch to timetrack dir
