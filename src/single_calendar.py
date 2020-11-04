@@ -1,4 +1,4 @@
-from src.helpers import read_calendar,get_total_time,convert_dt,get_today,get_last_week,get_last_month,get_tomorrow,get_avg_productivity,get_timerange_str,get_time_by_date
+from helpers import read_calendar,get_total_time,convert_dt,get_today,get_last_week,get_last_month,get_tomorrow,get_avg_productivity,get_timerange_str,get_time_by_date
 import argparse
 import warnings
 
@@ -86,4 +86,3 @@ if __name__ == '__main__':
     major_cal = Calendar(cal_path,FLAGS.start,FLAGS.end,FLAGS.today,FLAGS.this_week,FLAGS.this_month)
     major_cal.print_components()
     major_cal.get_time_summary()
-
