@@ -76,30 +76,29 @@ pip install -r requirements.txt
 
 ### 2. Export your calendar data
 
-Export the calendars you want to analyse in .ics format to `data/calendars/`.
-How to export the .ics files depends on your calendar client, but here is an example for exporting calendars with the Mac calendar programme.
+Export the calendars you want to analyse as .ics files to `data/calendars/`. How to export the .ics files depends on your calendar client, but here is an example for exporting calendars with the Mac calendar programme.
 
 ![How to export a calendar from Mac calendar app](data/screenshots/export_calendar.png?raw=true "Export calendar")
 
 
 ### 3. Add the Timetrack folder to the system path (on Mac)
 
-Edit `timetrack.sh` in a text editor, so that `TIMETRACKDIR` points to the location of your timetrack folder (e.g. /Users/nicole/code/Timetrack). Then, add the following line to your `~/.bash_profile` (replacing `/path/to/Timetrack/timetrack.sh` with the appropriate path), e.g.: 
+Edit `timetrack.sh` in a text editor, so that `TIMETRACKDIR` points to the location of your timetrack folder (e.g. /Users/nicole/code/Timetrack). Then, add the following line to your `~/.bash_profile` (replacing `/path/to/Timetrack/timetrack.sh` with the appropriate path, e.g. `/Users/nicole/code/Timetrack/timetrack.sh`): 
 ```
-source /Users/nicole/code/Timetrack/timetrack.sh
+source /path/to/Timetrack/timetrack.sh
 ```
-This will give you access to `timetrack_multi_cal` and `timetrack_single_cal` anywhere in the command line. Now, reload `~/.bash_profile`:
+This will give you access to `timetrack_multi_cal` and `timetrack_single_cal` from anywhere in the command line. Now, reload `~/.bash_profile`:
 ```
 source ~/.bash_profile
 ```
 
 ### 3. Add the Timetrack folder to the system path (on Linux)
 
-Edit `timetrack.sh` in a text editor, so that `TIMETRACKDIR` points to the location of your timetrack folder (e.g. /Users/nicole/code/Timetrack). Then, add the following line to your `~/.bashrc` (replacing `/path/to/Timetrack/timetrack.sh` with the appropriate path), e.g.: 
+Edit `timetrack.sh` in a text editor, so that `TIMETRACKDIR` points to the location of your timetrack folder (e.g. /Users/nicole/code/Timetrack). Then, add the following line to your `~/.bashrc` (replacing `/path/to/Timetrack/timetrack.sh` with the appropriate path, e.g. `/Users/nicole/code/Timetrack/timetrack.sh`): 
 ```
-source /Users/nicole/code/Timetrack/timetrack.sh
+source /path/to/Timetrack/timetrack.sh
 ```
-This will give you access to `timetrack_multi_cal` and `timetrack_single_cal` anywhere in the command line. Now, reload `~/.bashrc`:
+This will give you access to `timetrack_multi_cal` and `timetrack_single_cal` from anywhere in the command line. Now, reload `~/.bashrc`:
 ```
 source ~/.bashrc
 ```
@@ -110,14 +109,16 @@ Change 'TIMETRACKDIR' to the location of your timetrack folder (e.g. C:\Users\ni
 
 Then, add the timetrack folder to the system path environment variables. This allows the use of `timetrack_multi_cal` and `timetrack_single_cal` from anywhere in the command line. On Windows 10, this is done via `Control Panel > System and Security > System > Advanced System Settings > Environment Variables`. Then double click on `Path` in System Variables then the `Browse...` button.
 
+(Many thanks to @Tom271 for writing the Windows `.bat` files.)
 
 ## Usage
 
-Now you can directly call `timetrack_multi_cal` or `timetrack_single_cal` from the commandline. As the name suggest, `timetrack_single_cal` analyses data from a single calendar, while `timetrack_multi_cal` provides a summary for multiple calendars. Calendars and time interval are adjustable through commandline arguments (see [Options](#options)).
-
-You can check if everything is working by running:
+Now you can directly call `timetrack_multi_cal` or `timetrack_single_cal` from the commandline. As the name suggest, `timetrack_single_cal` analyses data from a single calendar, while `timetrack_multi_cal` provides a summary for multiple calendars. Calendars and time interval are adjustable through commandline arguments (see [Options](#options)). You can check if everything is working by running:
 ```
 timetrack_multi_cal -calendars MajorTest.ics,MinorTest.ics -start 2020-10-29 -end 2020-11-01 --prod_score --remove_grid
+```
+This should produce the following output:
+```
 ==>spent 0 days 13 hours 0 minutes on tasks from 2020-10-29 to 2020-11-01
    - MajorTest.ics tasks: 0 days 6 hours 45 minutes (avg. productivity: 4.8)
    - MinorTest.ics tasks: 0 days 6 hours 15 minutes (avg. productivity: 3.0)
