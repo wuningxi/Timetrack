@@ -1,7 +1,7 @@
-from src.single_calendar import *
+from single_calendar import *
 from datetime import timedelta
-from src.plotting import plot_multi_cal_time
-from src.helpers import get_prod_by_date
+from plotting import plot_multi_cal_time
+from helpers import get_prod_by_date
 
 class MultiCalendar:
 

@@ -81,6 +81,13 @@ export TIMETRACKDIR=/path/to/timetrack # e.g. Users/nicole/code/timetrack
 ```
 source timetrack.sh
 ```
+### Windows
+
+- To use on Windows, change '%TIMETRACKDIR' to the location of your timetrack folder in both `timetrack_multi_cal.bat` and `timetrack_single_cal.bat`.
+- Add the timetrack folder to the system path environment variables. This allows the use of `timetrack_multi_cal` and `timetrack_single_cal` from anywhere in the command line. On Windows 10, this is done via `Control Panel > System and Security > System > Advanced System Settings > Environment Variables`. Then double click on `Path` in System Variables then the `Browse...` button.
+
+All other setup and usage will be the same as above. How you export the .ics files depends on your calendar client.
+
 
 ## Usage
 
@@ -148,12 +155,3 @@ optional arguments:
                         Print time spent per calendar category per day.
 
 ```
-
-## Use on Windows
-
-- To use on Windows, change '%TIMETRACKDIR' to the location of your timetrack folder in both `timetrack_multi_cal.bat` and `timetrack_single_cal.bat`.
-- Add the timetrack folder to the system path environment variables. This allows the use of `timetrack_multi_cal` and `timetrack_single_cal` from anywhere in the command line. On Windows 10, this is done via `Control Panel > System and Security > System > Advanced System Settings > Environment Variables`. Then double click on `Path` in System Variables then the `Browse...` button.
-
-All other setup and usage will be the same as above. How you export the .ics files depends on your calendar client.
-
-Note that these functions will *not* return you to the directory you began in but will move you to the timetrack folder.
