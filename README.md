@@ -1,6 +1,6 @@
 # Timetrack
 
-- Timetrack is a simple commandline program for analysing your own Mac calendar data.
+- Timetrack is a simple commandline program for analysing your own calendar data.
 - The idea for this project was inspired by Devi Parikh's calendar-based time management technique (I highly recommend reading her blog post: https://blog.usejournal.com/calendar-in-stead-of-to-do-lists-9ada86a512dd).
 - After experimenting with Devi's method for a while, I made some adaptations and developed Timetrack as part of my time management and productivity workflow (see [slides](https://github.com/wuningxi/Talks/blob/main/2020_How_to_be_organised_and_productive_during_your_PhD.pdf) from my productivity talk).
 - If you are only interested in how to install and use Timetrack, feel free to skip to [Setup](#setup) and [Usage](#usage).
@@ -109,7 +109,7 @@ Change 'TIMETRACKDIR' to the location of your timetrack folder (e.g. C:\Users\ni
 
 Then, add the timetrack folder to the system path environment variables. This allows the use of `timetrack_multi_cal` and `timetrack_single_cal` from anywhere in the command line. On Windows 10, this is done via `Control Panel > System and Security > System > Advanced System Settings > Environment Variables`. Then double click on `Path` in System Variables then the `Browse...` button.
 
-(Many thanks to @Tom271 for writing the Windows `.bat` files.)
+(Many thanks to [Tom271](https://github.com/Tom271) for writing the Windows `.bat` files.)
 
 ## Usage
 
